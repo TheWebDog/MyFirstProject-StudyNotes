@@ -15,7 +15,11 @@ npm run serve   //启动项目
 ```
 
 ```
-npm i vuex vue-router -S //安装vuex vue-router (不知道为什么router安装4.0.12的 vuex安装4.0.2的会报错，我还是用的3.5.3和3.6.2版本)
+npm i vuex vue-router -S //安装vuex vue-router  
+(不知道为什么  
+router安装4.0.12的  
+vuex安装4.0.2的会报错  
+我还是用3.5.3和3.6.2的版本好了)
 ```
 
 ### git 使用
