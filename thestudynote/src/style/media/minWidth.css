@@ -1,0 +1,46 @@
+@media (min-width: 901px) {
+  .Home {
+    grid-template-areas:
+      'header header header header header header' 
+      'sidebar sidebar sidebar sidebar content block';
+  }
+  /* 导航栏列表 */
+  .nav_div{
+    height: 60px;
+  }
+  .nav_ul {
+    width: 506px;
+  }
+  .nav_li {
+    width: 100px;
+    height: 50px;
+    font-size: 20px;
+    line-height: 50px;
+  }
+  .nav_li:hover {
+    line-height: 45px;
+  }
+  .nav_li:active {
+    line-height: 55px;
+    transition: 0.05s;
+  }
+  .nav_ulClosed {
+    color: #808080;
+    height: 48px;
+  }
+  /* 导航栏文字 */
+  .welcome {
+    top: 10px;
+    left: 20px;
+    text-align: left;
+  }
+  .master {
+    text-align: right;
+    bottom: 10px;
+    right: 10px;
+  }
+  .tittle {
+    width: 250px;
+    left: 30px;
+  }
+}
