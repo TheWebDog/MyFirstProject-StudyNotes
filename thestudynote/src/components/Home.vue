@@ -3,6 +3,7 @@
     <div class="thehead">
       <Nav></Nav>
     </div>
+    <div class="leftblock"></div>
     <div class="message">信息区</div>
     <div class="show">
       <div class="showhead">
@@ -12,7 +13,7 @@
       </div>
       <List></List>
     </div>
-
+    <div class="rightblock"></div>
     <div class="background">
       <div class="square">
         <ul>

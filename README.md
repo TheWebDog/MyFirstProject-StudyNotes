@@ -2,6 +2,14 @@
 
 ### 环境
 
+##### 安装
+
+```
+npm i
+```
+
+##### 使用了以下模块
+
 ```
 npm i -g @vue/cli   //全局安装vue环境
 ```
@@ -15,11 +23,16 @@ npm run serve   //启动项目
 ```
 
 ```
-npm i vuex vue-router -S //安装vuex vue-router  
-(不知道为什么  
-router安装4.0.12的  
-vuex安装4.0.2的会报错  
+npm i vuex vue-router -S //安装vuex vue-router
+(不知道为什么
+router安装4.0.12的
+vuex安装4.0.2的会报错
 我还是用3.5.3和3.6.2的版本好了)
+```
+
+```
+npm i marked --save //安装marked模块
+npm i highlight.js --save //代码高亮
 ```
 
 ### git 使用
@@ -82,7 +95,8 @@ vuex安装4.0.2的会报错
 > > router.js //创建 router  
 > > store.js //创建根 store  
 > > main.js //将 router 和 store 加入到 vue  
-> > components //组件模块
+> > components //组件模块  
+> > style //css 样式合集 其中的 index.css 为导出文件
 
 ### components (组件模块)
 
@@ -94,7 +108,7 @@ vuex安装4.0.2的会报错
 > > thefilter // 筛选按钮  
 > > list // 文章部分
 
-### 模块化格式
+### 模块格式
 
 > 某模块
 >

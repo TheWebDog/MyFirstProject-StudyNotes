@@ -1,7 +1,10 @@
-// import { CHANGE_SEARCH_VALUE } from './type'
+import { GET_ETXTAREA,GET_VALUE } from './type'
 
 export default {
-  // change_searchValue: function (context, value) {
-  //   context.commit(CHANGE_SEARCH_VALUE, value)
-  // },
+  get_input: function (context, input) {
+    context.commit(GET_VALUE,input)
+  },
+  get_textarea: function (context, textarea) {
+    context.commit(GET_ETXTAREA,textarea)
+  },
 }

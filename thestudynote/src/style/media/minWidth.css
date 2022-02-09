@@ -1,8 +1,16 @@
 @media (min-width: 901px) {
   .Home {
     grid-template-areas:
-      'header header header header header header' 
-      'sidebar sidebar sidebar sidebar content block';
+      'header header header header header header header' 
+      'leftblock sidebar sidebar content content content rightblock';
+  }
+  .message{
+    --margin_size: 5px;
+    width: calc(100% - 2 var(--margin_size));
+    height: calc(100% - 2 var(--margin_size));
+    margin: var(--margin_size);
+    margin-top: 10px;
+    margin-bottom: 0px;
   }
   /* 导航栏列表 */
   .nav_div{
@@ -42,5 +50,14 @@
   .tittle {
     width: 250px;
     left: 30px;
+  }
+  /* list */
+  .list{
+    height: calc(100vh - 150px);
+    overflow: auto;
+    margin: 0px 5px 10px;
+    border-radius: 15px;
+    border-top: 1px solid #ffffff;
+    border-bottom: 1px solid #ffffff;
   }
 }

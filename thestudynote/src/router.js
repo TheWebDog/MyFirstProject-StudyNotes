@@ -13,13 +13,13 @@ export default new VueRouter({
       },
       name:''
     },
-    // {
-    //   path: '/page/:classify/:title',
-    //   component: () => {
-    //     return import('./components/page/Page.vue')
-    //   },
-    //   name:'page/:classify/:title'
-    // },
+    {
+      path: '/page/:classify/:title',
+      component: () => {
+        return import('./components/page/Page.vue')
+      },
+      name:'page/:classify/:title'
+    },
     {
       path: '/writePage',
       component: () => {

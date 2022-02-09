@@ -9,13 +9,13 @@
       >
         <p class="title">{{ item.title }}</p>
         <p class="classify">
-          <span> 分类</span>： <span>{{ item.classify }}</span>
+          <span class="thespan"> 分类</span>： <span class="thespan">{{ item.classify }}</span>
         </p>
         <p class="date">
-          <span> 编写日期</span>： <span>{{ item.date }}</span>
+          <span class="thespan"> 编写日期</span>： <span class="thespan">{{ item.date }}</span>
         </p>
         <p class="synopsis">
-          <span> 简介</span>： <span> {{ item.synopsis }}</span>
+          <span class="thespan"> 简介</span>： <span class="thespan"> {{ item.synopsis }}</span>
         </p>
         <p class="count">访问次数： {{ item.count }}</p>
       </li>
@@ -34,6 +34,6 @@ export default {
     toPage: function (classify, title) {
       this.$router.push(`/page/${classify}/${title}`)
     }
-  }
+  },
 };
 </script>
