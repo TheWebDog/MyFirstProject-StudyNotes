@@ -55,10 +55,10 @@
   z-index: 50;
   right: 60px;
   padding: 2px;
-  margin: 10px 5px 0px 5px;
+  margin: 6px 5px 0px 5px;
   height: auto;
   overflow: hidden;
-  background-color: #fff2dfb4;
+  background-color: #cca4e3a4;
   color: black;
   /* flex布局 */
   display: flex;

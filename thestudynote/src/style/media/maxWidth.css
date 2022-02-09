@@ -11,10 +11,15 @@
   .message{
     --margin_size: 5px;
     width: calc(100% - 2 var(--margin_size));
-    height: 50px;
+    height: 100px;
     /* margin: var(--margin_size); */
-    margin-top: 10px;
+    margin-top: 5px;
     margin-bottom: 0px;
+    border-radius: 2px;
+  }
+  .show{
+    margin-top: 5px;
+    border-radius: 2px;
   }
   /* 导航栏列表 */
   .nav_div{
@@ -22,12 +27,15 @@
   }
   .nav_ul {
     width: 86px;
+    margin-top: 10px;
   }
   .nav_li {
-    width: 80px;
-    height: 30px;
+    width: 78px;
+    height: 28px;
     font-size: 15px;
     line-height: 30px;
+    border: 1px solid #ffffff;
+    margin: 1px;
   }
   .nav_li:hover {
     line-height: 25px;
@@ -37,8 +45,9 @@
     transition: 0.05s;
   }
   .nav_ulClosed {
-    height: 38px;
+    height: 37px;
     color: #808080;
+    margin-top: 10px;
   }
   /* 导航栏文字 */
   .welcome {
@@ -57,7 +66,7 @@
   }
   /* list */
   .list{
-    height: calc(100vh - 200px);
+    height: calc(100vh - 238px);
     overflow: auto;
     margin: 0px 5px 10px;
     border-radius: 15px;
