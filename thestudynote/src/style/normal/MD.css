@@ -8,7 +8,8 @@
   -webkit-text-size-adjust: 100%;
   color: #333;
   overflow: hidden;
-  font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans,
+    sans-serif;
   font-size: 16px;
   line-height: 1.6;
   word-wrap: break-word;
@@ -52,6 +53,29 @@
   font-family: monospace, monospace;
   font-size: 1em;
 }
+code{
+  word-wrap: break-word !important;
+  white-space: pre-wrap !important;
+}
+
+/* code滚动条 */
+/* code::-webkit-scrollbar {
+  width: 1px;
+  height: 7px;
+}
+code::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  background: #535353;
+}
+code::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  background: #ededed;
+} */
+
+
+
 
 .markdown-body input {
   color: inherit;
@@ -67,7 +91,7 @@
   line-height: normal;
 }
 
-.markdown-body input[type="checkbox"] {
+.markdown-body input[type='checkbox'] {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   padding: 0;
@@ -89,7 +113,8 @@
 }
 
 .markdown-body input {
-  font: 13px/1.4 Helvetica, arial, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+  font: 13px/1.4 Helvetica, arial, freesans, clean, sans-serif, 'Segoe UI Emoji',
+    'Segoe UI Symbol';
 }
 
 .markdown-body a {
@@ -114,13 +139,13 @@
 
 .markdown-body hr:before {
   display: table;
-  content: "";
+  content: '';
 }
 
 .markdown-body hr:after {
   display: table;
   clear: both;
-  content: "";
+  content: '';
 }
 
 .markdown-body h1,
@@ -186,13 +211,13 @@
 }
 
 .markdown-body code {
-  font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font: 12px Consolas, 'Liberation Mono', Menlo, Courier, monospace;
 }
 
 .markdown-body pre {
   margin-top: 0;
   margin-bottom: 0;
-  font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font: 12px Consolas, 'Liberation Mono', Menlo, Courier, monospace;
 }
 
 .markdown-body kbd {
@@ -205,15 +230,15 @@
   color: #000;
   padding: 3px 5px;
   line-height: 10px;
-  font: 11px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font: 11px Consolas, 'Liberation Mono', Menlo, Courier, monospace;
   display: inline-block;
 }
 
-.markdown-body>*:first-child {
+.markdown-body > *:first-child {
   margin-top: 0 !important;
 }
 
-.markdown-body>*:last-child {
+.markdown-body > *:last-child {
   margin-bottom: 0 !important;
 }
 
@@ -342,7 +367,7 @@
   margin-bottom: 0;
 }
 
-.markdown-body li>p {
+.markdown-body li > p {
   margin-top: 16px;
 }
 
@@ -369,11 +394,11 @@
   border-left: 4px solid #ddd;
 }
 
-.markdown-body blockquote>:first-child {
+.markdown-body blockquote > :first-child {
   margin-top: 0;
 }
 
-.markdown-body blockquote>:last-child {
+.markdown-body blockquote > :last-child {
   margin-bottom: 0;
 }
 
@@ -414,17 +439,17 @@
   padding: 0;
   margin: 0;
   font-size: 85%;
-  background-color: rgba(0,0,0,0.04);
+  background-color: rgba(0, 0, 0, 0.04);
   border-radius: 3px;
 }
 
 .markdown-body code:before,
 .markdown-body code:after {
   letter-spacing: -0.2em;
-  content: "\00a0";
+  content: '\00a0';
 }
 
-.markdown-body pre>code {
+.markdown-body pre > code {
   padding: 0;
   margin: 0;
   font-size: 100%;
@@ -545,7 +570,7 @@
 }
 
 .markdown-body .highlight .nb {
-  color: #0086B3;
+  color: #0086b3;
 }
 
 .markdown-body .highlight .nc {
@@ -659,7 +684,7 @@
 
 .markdown-body .highlight .gc {
   color: #999;
-  background-color: #EAF2F5;
+  background-color: #eaf2f5;
 }
 
 .markdown-body .octicon {
@@ -683,7 +708,7 @@
   list-style-type: none;
 }
 
-.markdown-body .task-list-item+.task-list-item {
+.markdown-body .task-list-item + .task-list-item {
   margin-top: 3px;
 }
 
@@ -698,14 +723,6 @@
     padding: 30px;
   }
 }
-
-
-
-
-
-
-
-
 
 /* needed because the container has overflow: hidden, but the pilcrows overflow */
 .markdown-body {
@@ -727,9 +744,9 @@
 .markdown-body h4:hover .header-link:before,
 .markdown-body h5:hover .header-link:before,
 .markdown-body h6:hover .header-link:before {
-    content: "\00B6";/* pilcrow */
-    color: #888;
-    font-size: smaller;
+  content: '\00B6'; /* pilcrow */
+  color: #888;
+  font-size: smaller;
 }
 
 .markdown-body .header-link {
@@ -755,6 +772,6 @@
   text-decoration: none;
 }
 
-body{
+body {
   padding: 0;
 }

@@ -15,11 +15,16 @@
           @input="set_input($event)"
         />
       </div>
-      <div class="left_content" @input="set_textarea($event)">
-        <textarea placeholder="由此开始新篇章" />
-        <div class="left_bottom" @input="set_textarea($event)">
+      <div class="left_content">
+        <textarea  @input="set_textarea($event)" placeholder="由此开始新篇章" />
+        <div class="left_bottom">
           <div class="left_classify">
-            <input list="browsers" type="text" placeholder="分类" />
+            <input
+              list="browsers"
+              type="text"
+              placeholder="分类"
+              @input="set_classify($event)"
+            />
             <datalist id="browsers">
               <option
                 v-for="(item, index) in getOptionValue"
@@ -29,7 +34,7 @@
             </datalist>
           </div>
           <div class="left_btn">
-            <div class="left_submit">提交</div>
+            <div class="left_submit" @click="set_submit">提交</div>
             <div class="left_download">下载</div>
           </div>
         </div>
@@ -65,20 +70,26 @@ export default {
     ...mapGetters(['getTittle', 'getContext', 'getOptionValue'])
   },
   methods: {
-    ...mapActions(['get_input', 'get_textarea']),
+    ...mapActions(['get_input', 'get_textarea','get_classify','btn_submit']),
     set_input (e) {
       this.get_input(e.target.value)
     },
     set_textarea (e) {
       this.get_textarea(e.target.value)
     },
+    set_classify (e) {
+      this.get_classify(e.target.value)
+    },
+    set_submit(){
+      this.btn_submit()
+    },
     goBack () {
       // console.log(this.$router)
       this.$router.back()
     }
   },
-  created () {
+  // created () {
 
-  },
+  // },
 }
 </script>
