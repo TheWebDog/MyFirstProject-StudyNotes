@@ -1,8 +1,13 @@
 <template>
   <div class="md_container">
     <div class="md_left">
-      <div class="left_head">编辑区</div>
-      <div class="left_tittle md_tittle">
+      <div class="left_head">
+        <div class="go_back">
+          <div class="go_back_btn" @click="goBack">◀返回</div>
+        </div>
+        <div class="left_head_value">编辑区</div>
+      </div>
+      <div class="left_tittle">
         <input
           placeholder="标题区"
           type="text"
@@ -10,20 +15,38 @@
           @input="set_input($event)"
         />
       </div>
-      <div class="left_content md_content" @input="set_textarea($event)">
-        <textarea />
+      <div class="left_content" @input="set_textarea($event)">
+        <textarea placeholder="由此开始新篇章" />
+        <div class="left_bottom" @input="set_textarea($event)">
+          <div class="left_classify">
+            <input list="browsers" type="text" placeholder="分类" />
+            <datalist id="browsers">
+              <option
+                v-for="(item, index) in getOptionValue"
+                :key="index"
+                :value="item"
+              ></option>
+            </datalist>
+          </div>
+          <div class="left_btn">
+            <div class="left_submit">提交</div>
+            <div class="left_download">下载</div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="md_right">
       <div class="right_head">预览区</div>
       <div class="right_tittle">
         <!-- 渲染标题 -->
-        {{ getTittle }}
+        <div class="right_tittle_value">
+          {{ getTittle }}
+        </div>
       </div>
       <div class="right_content">
         <div class="right_content_scrollbar">
-        <!-- 渲染md -->
-        <MDContext></MDContext>
+          <!-- 渲染md -->
+          <MDContext></MDContext>
         </div>
       </div>
     </div>
@@ -39,7 +62,7 @@ export default {
     MDContext
   },
   computed: {
-    ...mapGetters(['getTittle', 'getContext'])
+    ...mapGetters(['getTittle', 'getContext', 'getOptionValue'])
   },
   methods: {
     ...mapActions(['get_input', 'get_textarea']),
@@ -49,6 +72,10 @@ export default {
     set_textarea (e) {
       this.get_textarea(e.target.value)
     },
+    goBack () {
+      // console.log(this.$router)
+      this.$router.back()
+    }
   },
   created () {
 

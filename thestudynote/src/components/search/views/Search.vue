@@ -6,7 +6,7 @@
         placeholder="Search..."
         @input="changeValue($event)"
       />
-      <div class="overlay"></div>
+      <!-- <div class="overlay"></div> -->
   </div>
 </template>
 

@@ -25,12 +25,12 @@
   box-shadow: 0px 0px 50px #ffffff;
   transition: all 0.3s;
 }
-.search_input:focus + .overlay {
+.search_input:focus +  /* .overlay */ {
   background: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
-.overlay {
+/* .overlay {
   position: fixed;
   top: 0px;
   left: 0px;
@@ -39,4 +39,4 @@
   transition: 0.2s ease-out;
   z-index: 20;
   pointer-events: none
-}
+} */
