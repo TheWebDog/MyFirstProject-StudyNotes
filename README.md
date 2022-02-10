@@ -10,6 +10,8 @@ npm i
 
 ##### 使用了以下模块
 
+###### 服务器部分
+
 ```
 npm i -g @vue/cli   //全局安装vue环境
 ```
@@ -33,6 +35,12 @@ vuex安装4.0.2的会报错
 ```
 npm i marked --save //安装marked模块
 npm i highlight.js --save //代码高亮
+```
+
+###### 服务器部分
+
+```
+npm i express nodemon mongoose --save // (我也不知道描述写什么好了)
 ```
 
 ### git 使用

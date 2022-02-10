@@ -31,7 +31,7 @@
 }
 .left_tittle {
   height: 40px;
-  border-bottom: 1px solid #e3e3e3;
+  border-bottom: 2px solid #e3e3e3;
 }
 .left_tittle input {
   text-indent: 20px;
@@ -41,12 +41,13 @@
 }
 .left_content {
   padding-left: 10px;
-  border-bottom: 1px solid #e3e3e3;
+  border-bottom: 2px solid #e3e3e3;
 }
 .left_content textarea {
   height: calc(100vh - 110px);
   margin-top: 10px;
   font-size: 20px;
+  resize: none;
 }
 .left_content textarea::-webkit-scrollbar{
   /*滚动条整体样式*/
@@ -71,18 +72,19 @@
 .right_tittle {
   width: 100%;
   height: 30px;
-  border-bottom: 1px solid #e3e3e3;
+  border-bottom: 2px solid #e3e3e3;
   text-indent: 20px;
   font-size: 25px;
   margin-top: 10px;
 }
 .right_content {
-  height: calc(100vh - 110px);
+  height: calc(100vh - 107px);
   margin-top: 10px;
   font-size: 20px;
   padding-left: 10px;
   padding-right: 20px;
   overflow: auto;
+  border-bottom: 2px solid #e3e3e3;
 }
 .right_content_scrollbar {
   width: 100%;
