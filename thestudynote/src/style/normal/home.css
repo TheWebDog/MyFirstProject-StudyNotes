@@ -17,6 +17,10 @@
 .rightblock{
   grid-area: rightblock;
 }
+.leftblock,.rightblock{
+  text-align: center;
+  padding-top: 30vh;
+}
 .message{
   grid-area: sidebar;
   background-color: rgba(255, 255, 255, 0.4);
@@ -27,6 +31,7 @@
   grid-area: header;
 }
 .show {
+  grid-area: content;
   margin-top: 10px;
   background-color: rgba(255, 255, 255, 0.4);
   border-radius: 10px;
@@ -35,7 +40,6 @@
 .showhead{
   display: grid;
   grid-template-columns: 200px auto 70px;
-  grid-area: content;
   align-items: center;
   justify-items: center;
 }

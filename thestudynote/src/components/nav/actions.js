@@ -1,6 +1,6 @@
-import { CHANGE_CLOSEOROPEN } from './type'
+import { GET_NAV } from './type'
 export default {
-  changeCloseORopen: function (context) {
-    context.commit(CHANGE_CLOSEOROPEN)
+  getNav: function (context) {
+    context.commit(GET_NAV)
   },
 }

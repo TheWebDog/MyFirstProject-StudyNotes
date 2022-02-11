@@ -21,7 +21,7 @@ router.post('/submitPage', function (req, res) {
     })
     .then(() => {
       // 读取文章目录
-      return  fsPromises.readdir(`./articles/${classify}`)
+      return fsPromises.readdir(`./articles/${classify}`)
     })
     .then((files2) => {
       // 判断是否存在重名文章
@@ -39,11 +39,25 @@ router.post('/submitPage', function (req, res) {
         .replace('$tittle', tittle)
         .replace('$classify', classify)
         .replace('$content', content)
-        return fsPromises.writeFile(`./articles/${classify}/${tittle}.md`, FinalContent)
+      return fsPromises.writeFile(
+        `./articles/${classify}/${tittle}.md`,
+        FinalContent
+      )
     })
     .then(() => {
       res.send('文件写入成功')
       return
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+})
+
+router.get('/getClassify', function (req, res) {
+  fsPromises
+    .readdir('./articles')
+    .then((files) => {
+      res.send(files)
     })
     .catch((err) => {
       console.log(err)

@@ -3,8 +3,8 @@
     <div class="thehead">
       <Nav></Nav>
     </div>
-    <div class="leftblock"></div>
-    <div class="message">信息区</div>
+    <div class="leftblock">广告 <br> <br> 招租</div>
+    <div class="message">信息区：登录按钮，本站简述</div>
     <div class="show">
       <div class="showhead">
         <Thefilter></Thefilter>
@@ -13,7 +13,7 @@
       </div>
       <List></List>
     </div>
-    <div class="rightblock"></div>
+    <div class="rightblock">广告 <br> <br> 招租</div>
     <div class="background">
       <div class="square">
         <ul>

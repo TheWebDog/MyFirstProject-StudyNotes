@@ -12,4 +12,4 @@ app.use(express.json())
 // 分路由
 app.use('/' , require('./routers/index'))
 
-app.listen(3000)
+app.listen(3090)

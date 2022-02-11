@@ -15,41 +15,28 @@
             v-for="(item, index) in getClassifyList"
             v-bind:key="index"
           >
-          {{ item }}
+            {{ item }}
           </li>
         </ul>
       </div>
     </div>
-    <!-- <ul
-      class="nav_ul"
-      :class="{ nav_ulClosed: getCloseORopen }"
-    >
-      <li
-        class="nav_li"
-        v-for="(item, index) in getClassifyList"
-        v-bind:key="index"
-      >
-        {{ item }}
-      </li>
-    </ul>
-    <div class="btn" @click="closeORopen">≡</div> -->
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 export default {
   name: "Nav",
   computed: {
     ...mapGetters(['getClassifyList']),
   },
   methods: {
-
+    ...mapActions(['getNav']),
+  },
+  created () {
+    this.getNav()
   },
 }
-
-
-
 </script>
 
 

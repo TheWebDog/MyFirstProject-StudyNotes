@@ -29,7 +29,7 @@ export default {
     }
     // 将文章发送给后端
     axios
-      .post('http://localhost:3000/submitPage', { ...obj })
+      .post('http://localhost:3090/submitPage', { ...obj })
       .then((res) => {
         var data=res.data
         switch (data) {
