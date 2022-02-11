@@ -8,7 +8,19 @@
 npm i
 ```
 
-##### 使用了以下模块
+在 thestudynote 中启动该项目
+
+```
+npm run serve
+```
+
+在 server 中启本地服务器
+
+```
+npm start
+```
+
+##### 使用了以下模块(没啥用的部分，我只是记录下我用了啥)
 
 ###### 前端部分
 
@@ -53,7 +65,11 @@ npm i express nodemon mongoose --save
 npm i cors --save //解决跨域的包
 ```
 
-### git 使用
+```
+npm i async --save //此处无注释
+```
+
+### git 使用(没啥用的部分，只是记录下)
 
 #### 个人
 
@@ -103,7 +119,7 @@ npm i cors --save //解决跨域的包
 
 在 vscode 源码管理中 -->BRANCHES 中也可以查看和操作
 
-## 2.文件
+## 2.文件(简单介绍一下)
 
 ### src (vue 入口文件)
 
@@ -124,7 +140,8 @@ npm i cors --save //解决跨域的包
 > > nav //导航栏  
 > > search //搜索框  
 > > thefilter // 筛选按钮  
-> > list // 文章部分
+> > list // 文章部分  
+> > ... ...
 
 ### 模块格式
 
@@ -136,7 +153,7 @@ npm i cors --save //解决跨域的包
 > > action.js //动作  
 > > type.js //类型  
 > > getter.js //获取计算后的状态  
-> > views //存放 vue 文件
+> > views //存放 vue 的文件
 
 ## 3.遇到的问题
 
@@ -149,8 +166,13 @@ npm i cors --save //解决跨域的包
         1.想要在主页不变，点击分类后只更改主体部分，需要用到子路由children，并且匹配HomeBody组件，因此使用星号*匹配
         2.星号*匹配要放在最下面，并且他的父路由也要放在最下面！！！真是的...
         3.在点击分类时 因为本身在某分类里 会导致路由一直+'ClassifyPage' 越来越长~ 后来改了一下逻辑 直接不让他匹配'ClassifyPage/:id'就直接'/:id'
-        4.再次点击当前的分类会报错-"路由重复"，据我所知的两种解决方式：
+        4.切换分类时 list组件不重新渲染 通过给组件设置key值为当前路由里的classify 当key改变 会使组件重新渲染
+        5.再次点击当前的分类会报错-"路由重复"，据我所知的两种解决方式：
              1.在router中写下const originalPush = VueRouter.prototype.push;VueRouter.prototype.push = function push(location) {return originalPush.call(this, location).catch(err => err)}
              2.当然我用的第二种 判断this.$route.params.classifyId != classify再进行跳转路由
     4.异步问题
         1.fs 读取文件 创建文件 再读取文件 会导致最后读取时读取不到更改创建的 用 fs.promises 解决
+
+## 内心独白
+
+吐了吐了 这是我纯自己手撸的第一个项目(样式也是我纯手撸的！！！没用框架！！除了 markdown 用了库和别人的样式包 并且对其 css 进行优化更改) 借鉴了网上一些样子 参考了大佬的项目 并对其进行了很多很多优化(到中后期 已经和他的项目有不小差异了) 不自己弄就不知道自己有多菜 这 css 写的快吐了 因为分模块写的 并且中途还进行"合理化调试" 导致 css 文件已经不完全对应他自己的模块了 后期纯用 vscode 查找功能找的 class 在进行修改

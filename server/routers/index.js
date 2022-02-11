@@ -1,6 +1,15 @@
 const express = require('express')
 const router = express.Router()
 const fsPromises = require('fs').promises
+const async = require('async')
+
+// 模板
+var thetemp = function (fileName, classify, birthTime, Hits) {
+  this.title = fileName;
+  this.classify = classify;
+  this.date = birthTime;
+  this.count = Hits;
+};
 
 // 接收文章
 router.post('/submitPage', function (req, res) {
@@ -52,7 +61,7 @@ router.post('/submitPage', function (req, res) {
       console.log(err)
     })
 })
-
+// 获取分类列表
 router.get('/getClassify', function (req, res) {
   fsPromises
     .readdir('./articles')
@@ -62,6 +71,37 @@ router.get('/getClassify', function (req, res) {
     .catch((err) => {
       console.log(err)
     })
+})
+// 通过分类获取文章
+router.post('/getList', function (req, res) {
+  var { classifyId } = req.body
+  var thefile = [] // 文件名列表
+  var Hits = 123 // 点击量瞎写的!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  var timeList = []
+  // 时间列表
+  ;(async () => {
+    thefile = await fsPromises.readdir(`./articles/${classifyId}`)
+    var promisesOfFs = []
+    for (var i = 0; i < thefile.length; i++) {
+      promisesOfFs.push(
+        fsPromises.stat(`./articles/${classifyId}/${thefile[i]}`)
+      )
+    }
+    var times = await Promise.all(promisesOfFs)
+    for (var i = 0; i < times.length; i++) {
+      timeList.push(times[i].birthtime.toLocaleString())
+    };
+    // 数据整合
+    var resault = [];
+    for (var i = 0; i < thefile.length; i++) {
+      resault.push(new thetemp(thefile[i], classifyId, timeList[i], Hits))
+    }
+    res.send(resault)
+  })()
+})
+// 获取热门文章
+router.get('/getHot', function (req, res) {
+  res.send(['热热热'])
 })
 
 module.exports = router

@@ -46,4 +46,16 @@
     border-top: 1px solid #ffffff;
     border-bottom: 1px solid #ffffff;
   }
+  /* classify */
+  .classify_li{
+    height: 80px;
+    line-height: 80px;
+    font-size: 35px;
+  }
+  .classify_li:after{
+    width: 20px;
+    height: 20px;
+    top: 30px;
+    right: 15px;
+  }
 }

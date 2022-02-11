@@ -25,7 +25,7 @@
       </div>
 
       <div class="list_ClassifyPage">
-        <List></List>
+        <List :key="$route.params.classifyId"></List>
       </div>
     </div>
   </div>
@@ -41,9 +41,6 @@ export default {
   },
   computed: {
     ...mapGetters(['getClassifyList']),
-    // isChoiced (item) {
-    //   return this.$route.params.classifyId==item
-    // },
   },
   methods: {
     // this.$route.params.classifyId
