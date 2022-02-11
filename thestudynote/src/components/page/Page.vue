@@ -10,7 +10,7 @@ export default {
   },
   methods: {
     handle () {
-      console.log(this.$route)
+      // console.log(this.$route)
     }
   },
   created () {

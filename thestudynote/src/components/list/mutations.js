@@ -6,7 +6,7 @@ export default {
       axios
       .get('http://localhost:3090/getHot')
       .then((res) => {
-        console.log(res.data,'--------Hot')
+        state.List = res.data
       })
       .catch((err) => {
         console.log(err)

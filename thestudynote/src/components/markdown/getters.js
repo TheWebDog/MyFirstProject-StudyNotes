@@ -1,8 +1,8 @@
 import { marked } from 'marked'
 
 export default {
-  getTittle: function (state) {
-    return state.tittle
+  getTitle: function (state) {
+    return state.title
   },
   getContext: function (state) {
     return state.context
@@ -10,7 +10,7 @@ export default {
   getHtml: function (state) {
     return marked.parse(state.context)
   },
-  getOptionValue: function (state) {
-    return state.optionValue
-  },
+  // getOptionValue: function (state) {
+  //   return state.optionValue
+  // },
 }

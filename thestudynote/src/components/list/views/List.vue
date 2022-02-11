@@ -32,7 +32,7 @@ export default {
   methods: {
     ...mapActions(['geClassifyList']),
     toPage: function (classify, title) {
-      this.$router.push(`/page/${classify}/${title}`)
+      this.$router.push(`/${classify}/${title}`)
     },
   },
   created () {

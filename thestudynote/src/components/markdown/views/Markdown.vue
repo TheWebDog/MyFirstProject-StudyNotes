@@ -7,7 +7,7 @@
         </div>
         <div class="left_head_value">编辑区</div>
       </div>
-      <div class="left_tittle">
+      <div class="left_title">
         <input
           placeholder="标题区"
           type="text"
@@ -16,7 +16,7 @@
         />
       </div>
       <div class="left_content">
-        <textarea  @input="set_textarea($event)" placeholder="由此开始新篇章" />
+        <textarea @input="set_textarea($event)" placeholder="由此开始新篇章" />
         <div class="left_bottom">
           <div class="left_classify">
             <input
@@ -27,7 +27,7 @@
             />
             <datalist id="browsers">
               <option
-                v-for="(item, index) in getOptionValue"
+                v-for="(item, index) in getClassifyList"
                 :key="index"
                 :value="item"
               ></option>
@@ -35,17 +35,17 @@
           </div>
           <div class="left_btn">
             <div class="left_submit" @click="set_submit">提交</div>
-            <div class="left_download">下载</div>
+            <div class="left_download" @click="set_download">下载</div>
           </div>
         </div>
       </div>
     </div>
     <div class="md_right">
       <div class="right_head">预览区</div>
-      <div class="right_tittle">
+      <div class="right_title">
         <!-- 渲染标题 -->
-        <div class="right_tittle_value">
-          {{ getTittle }}
+        <div class="right_title_value">
+          {{ getTitle }}
         </div>
       </div>
       <div class="right_content">
@@ -67,10 +67,10 @@ export default {
     MDContext
   },
   computed: {
-    ...mapGetters(['getTittle', 'getContext', 'getOptionValue'])
+    ...mapGetters(['getClassifyList','getTitle', 'getContext'])
   },
   methods: {
-    ...mapActions(['get_input', 'get_textarea','get_classify','btn_submit']),
+    ...mapActions(['get_input', 'get_textarea', 'get_classify', 'btn_submit']),
     set_input (e) {
       this.get_input(e.target.value)
     },
@@ -80,13 +80,16 @@ export default {
     set_classify (e) {
       this.get_classify(e.target.value)
     },
-    set_submit(){
+    set_submit () {
       this.btn_submit()
+      // this.$router.back()
+    },
+    set_download () {
+      console.log('下载功能暂未开发')
     },
     goBack () {
-      // console.log(this.$router)
       this.$router.back()
-    }
+    },
   },
   // created () {
 

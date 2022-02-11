@@ -1,6 +1,6 @@
 <template>
   <div class="nav_div">
-    <div class="tittle">
+    <div class="title">
       <h1 class="hello welcome" contenteditable="true">欢迎来到</h1>
       <h1 class="hello master" contenteditable="true">TheWebDog的md笔记</h1>
     </div>
@@ -39,7 +39,10 @@ export default {
       }
     },
     goHome () {
-      this.$router.replace(`/`)
+      if (this.$route.fullPath != `/`) {
+        this.$router.replace(`/`)
+      }
+
     },
   },
   created () {

@@ -172,6 +172,7 @@ npm i async --save //此处无注释
              2.当然我用的第二种 判断this.$route.params.classifyId != classify再进行跳转路由
     4.异步问题
         1.fs 读取文件 创建文件 再读取文件 会导致最后读取时读取不到更改创建的 用 fs.promises 解决
+        2.使用 Promise.all 大大节省异步时间
 
 ## 内心独白
 

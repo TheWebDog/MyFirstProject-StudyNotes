@@ -5,7 +5,7 @@ import axios from 'axios'
 export default {
   // 获取标题
   [GET_VALUE]: function (state, input) {
-    state.tittle = input
+    state.title = input
   },
   // 获取文章
   [GET_ETXTAREA]: function (state, textarea) {
@@ -19,7 +19,7 @@ export default {
     // 组装数据
     var obj = {
       // 标题
-      tittle: state.tittle,
+      title: state.title,
       // 文章-html形式
       content: marked.parse(state.context),
       // 文章-md形式
