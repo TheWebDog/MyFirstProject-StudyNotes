@@ -31,10 +31,21 @@ export default {
     axios
       .post('http://localhost:3000/submitPage', { ...obj })
       .then((res) => {
-        console.log(res)
+        var data=res.data
+        switch (data) {
+          case '存在重名文章':
+            alert('存在重名文章,请换一个标题')
+            break
+          case '文件写入成功':
+            alert('文章保存成功')
+            break
+          default:
+            console.log(data)
+            break
+        }
       })
       .catch((err) => {
-        console.log("res错误")
+        console.log('res错误')
         console.log(err)
       })
   },
