@@ -13,31 +13,7 @@
     margin-bottom: 0px;
   }
   /* 导航栏列表 */
-  .nav_div{
-    height: 60px;
-  }
-  .nav_ul {
-    width: 506px;
-  }
-  .nav_li {
-    width: 96px;
-    height: 45px;
-    font-size: 20px;
-    line-height: 50px;
-    border: 1px solid #ffffff;
-    margin: 1px;
-  }
-  .nav_li:hover {
-    line-height: 45px;
-  }
-  .nav_li:active {
-    line-height: 55px;
-    transition: 0.05s;
-  }
-  .nav_ulClosed {
-    color: #808080;
-    height: 54px;
-  }
+
   /* 导航栏文字 */
   .welcome {
     top: 10px;

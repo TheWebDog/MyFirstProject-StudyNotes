@@ -2,10 +2,25 @@
   <div class="nav_div">
     <div class="tittle">
       <h1 class="hello welcome" contenteditable="true">欢迎来到</h1>
-      <h1 class="hello master" contenteditable="true">TheWebDog的笔记</h1>
+      <h1 class="hello master" contenteditable="true">TheWebDog的md笔记</h1>
     </div>
 
-    <ul
+    <div class="nav_content">
+      <div class="homePage">首页</div>
+      <div class="dropdown">
+        <button class="dropbtn">分类</button>
+        <ul class="dropdown-content">
+          <li
+            class="option"
+            v-for="(item, index) in getClassifyList"
+            v-bind:key="index"
+          >
+          {{ item }}
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- <ul
       class="nav_ul"
       :class="{ nav_ulClosed: getCloseORopen }"
     >
@@ -17,27 +32,19 @@
         {{ item }}
       </li>
     </ul>
-    <div class="btn" @click="closeORopen">≡</div>
+    <div class="btn" @click="closeORopen">≡</div> -->
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 export default {
   name: "Nav",
   computed: {
-    ...mapGetters(['getClassifyList', 'getCloseORopen']),
+    ...mapGetters(['getClassifyList']),
   },
-  // created(){
-  //   console.log('注:此条为created生命周期中的测试文本-----')
-  //   console.log(this.$store)
-  //   console.log('---------------------------------------')
-  // },
   methods: {
-    ...mapActions(["changeCloseORopen"]),
-    closeORopen: function () {
-      this.changeCloseORopen();
-    },
+
   },
 }
 
