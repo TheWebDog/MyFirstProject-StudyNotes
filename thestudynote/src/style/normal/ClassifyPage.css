@@ -1,0 +1,171 @@
+.classify_container {
+  box-sizing: border-box;
+  width: 100%;
+  height: calc(100vh - 50px - 20px);
+  padding: 5px;
+  display: flex;
+  background-color: #b0a4e3;
+  border-radius: 10px;
+  border: 1px solid #ffffff;
+}
+
+.classify_list_container1 {
+  box-sizing: border-box;
+  width: 270px;
+  height: 100%;
+  background-color: #b0a4e3;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+}
+.classify_list_container2 {
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  margin-top: 20px;
+  padding-left: 5px;
+  height: calc(100% - 40px);
+  background-color: #b0a4e3;
+  border-left: 1px solid #ffffff;
+}
+.thetop,
+.thebottom {
+  box-sizing: border-box;
+  background-color: #b0a4e3;
+  width: 300px;
+  height: 20px;
+  border-radius: 10px;
+  position: absolute;
+  right: 0;
+}
+.thetop{
+  border-bottom: 1px solid #ffffff;
+  border-left: none;
+}
+.thebottom{
+  border-top: 1px solid #ffffff;
+  border-left: none;
+}
+
+.classify_list{
+  width: calc(100% - 10px);
+  overflow: auto;
+  direction:rtl;
+}
+.classify_ul{
+  width: 100%;
+  list-style: none;
+}
+.classify_li{
+  position: relative;
+  box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  border: 1px solid #ffffff;
+  width: 100%;
+  margin: 5px 0px;
+  height: 80px;
+  line-height: 80px;
+  font-weight: 900;
+  font-size: 35px;
+  text-align: center;
+  cursor: pointer;
+}
+
+
+.classify_list::-webkit-scrollbar {
+  /*滚动条整体样式*/
+  width: 10px; /*高宽分别对应横竖滚动条的尺寸*/
+  height: 1px;
+}
+.classify_list::-webkit-scrollbar-thumb {
+  /*滚动条里面小方块*/
+  border-radius: 10px;
+  background-color: skyblue;
+  background-image: -webkit-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.2) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0.2) 75%,
+    transparent 75%,
+    transparent
+  );
+}
+.classify_list::-webkit-scrollbar-track {
+  /*滚动条里面轨道*/
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  background: #ededed;
+  border-radius: 10px;
+}
+
+
+.choicedli{
+  background-color: #ffffffb7;
+}
+.classify_li:hover{
+  background-color: rgba(237, 237, 237, 0.8)
+}
+.classify_li:after{
+  content: '';
+  width: 20px;
+  height: 20px;
+  background-color: #b0a4e3;
+  display: block;
+  position: absolute;
+  top: 30px;
+  right: 15px;
+  border: 1px solid #8d4bbb;
+  border-radius: 50%;
+}
+.choicedli:after{
+  background-color: #8d4bbb;
+}
+
+
+
+
+
+
+
+
+
+
+.list_ClassifyPage {
+  background-color: #b0a4e3;
+  box-sizing: border-box;
+  width: 700px;
+  height: 100%;
+  padding: 5px;
+  overflow: auto;
+  border-radius: 15px;
+  border-top: 1px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
+}
+.list_ClassifyPage::-webkit-scrollbar {
+  /*滚动条整体样式*/
+  width: 10px; /*高宽分别对应横竖滚动条的尺寸*/
+  height: 1px;
+}
+.list_ClassifyPage::-webkit-scrollbar-thumb {
+  /*滚动条里面小方块*/
+  border-radius: 10px;
+  background-color: skyblue;
+  background-image: -webkit-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.2) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0.2) 75%,
+    transparent 75%,
+    transparent
+  );
+}
+.list_ClassifyPage::-webkit-scrollbar-track {
+  /*滚动条里面轨道*/
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  background: #ededed;
+  border-radius: 10px;
+}

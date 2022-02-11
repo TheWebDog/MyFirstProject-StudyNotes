@@ -5,7 +5,6 @@ export default {
     axios
       .get('http://localhost:3090/getClassify')
       .then((res) => {
-        console.log(res.data)
         state.classifyList = res.data
       })
       .catch((err) => {

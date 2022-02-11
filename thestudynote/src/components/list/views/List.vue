@@ -1,5 +1,5 @@
 <template>
-  <div class="list">
+  <div class="">
     <ul class="list_ul">
       <li
         @click="toPage(item.classify, item.title)"

@@ -1,19 +1,12 @@
 <template>
   <div class="Home">
+
     <div class="thehead">
       <Nav></Nav>
     </div>
-    <div class="leftblock">广告 <br> <br> 招租</div>
-    <div class="message">信息区：登录按钮，本站简述</div>
-    <div class="show">
-      <div class="showhead">
-        <Thefilter></Thefilter>
-        <Search></Search>
-        <AddBtn></AddBtn>
-      </div>
-      <List></List>
-    </div>
-    <div class="rightblock">广告 <br> <br> 招租</div>
+
+    <router-view class="Home_body"></router-view>
+
     <div class="background">
       <div class="square">
         <ul>
@@ -39,18 +32,11 @@
 
 <script>
 import { Nav } from './nav/index'
-import { AddBtn } from './addBtn/index'
-import { Thefilter } from './thefilter/index'
-import { Search } from './search/index'
-import { List } from './list/index'
+
 export default {
   name: 'Home',
   components: {
     Nav,
-    AddBtn,
-    Thefilter,
-    Search,
-    List,
   }
 }
 </script>

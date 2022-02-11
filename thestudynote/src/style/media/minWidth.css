@@ -1,28 +1,36 @@
-@media (min-width: 901px) {
-  .Home {
+@media (min-width: 1001px) {
+  /* .Home {
     grid-template-areas:
-      'header header header header header header header' 
-      'leftblock sidebar sidebar content content content rightblock';
+      'header header header header header header header header header header' 
+      'leftblock leftblock leftblock Home_body Home_body Home_body Home_body rightblock rightblock rightblock';
+  } */
+  .Home_body{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+  }
+  .Home_body{
+    width: 1000px;
+    margin: auto;
   }
   .message{
-    --margin_size: 5px;
-    width: calc(100% - 2 var(--margin_size));
-    height: calc(100% - 2 var(--margin_size));
-    margin: var(--margin_size);
-    margin-top: 10px;
-    margin-bottom: 0px;
+    width: 300px;
+    height: calc(100vh - 50px - 22px);
+    margin-right: 5px;
+  }
+  .show{
+    height: calc(100vh - 50px - 22px);
   }
   /* 导航栏列表 */
 
   /* 导航栏文字 */
   .welcome {
-    top: 10px;
+    top: 5px;
     left: 20px;
     text-align: left;
   }
   .master {
     text-align: right;
-    bottom: 10px;
+    bottom: 5px;
     right: 10px;
   }
   .tittle {

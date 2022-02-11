@@ -36,6 +36,7 @@ vuex安装4.0.2的会报错
 npm i marked --save //安装marked模块
 npm i highlight.js --save //代码高亮
 ```
+
 ```
 npm i axios --save //安装axios
 ```
@@ -43,13 +44,15 @@ npm i axios --save //安装axios
 ###### 后端部分
 
 ```
-npm i express nodemon mongoose --save  
-//别忘了在package里写上"start": "nodemon app.js"  
+npm i express nodemon mongoose --save
+//别忘了在package里写上"start": "nodemon app.js"
 //npm start调用脚本
 ```
+
 ```
 npm i cors --save //解决跨域的包
 ```
+
 ### git 使用
 
 #### 个人
@@ -134,3 +137,20 @@ npm i cors --save //解决跨域的包
 > > type.js //类型  
 > > getter.js //获取计算后的状态  
 > > views //存放 vue 文件
+
+## 3.遇到的问题
+
+    1.css样式问题
+        1.缩小后不到为啥老抽搐，后来发现是背景的一个东西在变形，并且设置它超出隐藏也不好使，导致一直忽略它了，后来直接让他position：flex让他在后面呆着去了
+    2.回调地狱
+        1.用 fs 读取判断再读取，导致回调地狱，后来改用 fs.promises大致解决了回调地狱
+        2.fs.promises后面.then不要忘记return啊！！！
+    3.路由问题：
+        1.想要在主页不变，点击分类后只更改主体部分，需要用到子路由children，并且匹配HomeBody组件，因此使用星号*匹配
+        2.星号*匹配要放在最下面，并且他的父路由也要放在最下面！！！真是的...
+        3.在点击分类时 因为本身在某分类里 会导致路由一直+'ClassifyPage' 越来越长~ 后来改了一下逻辑 直接不让他匹配'ClassifyPage/:id'就直接'/:id'
+        4.再次点击当前的分类会报错-"路由重复"，据我所知的两种解决方式：
+             1.在router中写下const originalPush = VueRouter.prototype.push;VueRouter.prototype.push = function push(location) {return originalPush.call(this, location).catch(err => err)}
+             2.当然我用的第二种 判断this.$route.params.classifyId != classify再进行跳转路由
+    4.异步问题
+        1.fs 读取文件 创建文件 再读取文件 会导致最后读取时读取不到更改创建的 用 fs.promises 解决
