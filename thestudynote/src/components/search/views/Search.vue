@@ -19,6 +19,7 @@ export default {
       var value = e.target.value
       this.change_searchValue(value)
       if (value.length != 0) {
+        this.$router.replace(value)
         this.geSearchList(value)
         this.changeFilter('搜索')
       } else {

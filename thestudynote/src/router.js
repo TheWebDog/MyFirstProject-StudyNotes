@@ -27,18 +27,18 @@ export default new VueRouter({
       name: '',
       children: [
         {
-          path: '/ClassifyPage/:classifyId',
-          name: 'ClassifyPage/:classifyId',
+          path: '/ClassifyPage/:classify',
+          name: 'ClassifyPage/:classify',
           component: () => {
             return import('./components/page/ClassifyPage.vue')
           },
         },
         {
-          path: '/Page/:classify/:title',
+          path: '/ClassifyPage/:classify/:title',
           component: () => {
             return import('./components/page/Page.vue')
           },
-          name: 'Page/:classify/:title',
+          name: 'ClassifyPage/:classify/:title',
         },
         {
           path: '*',

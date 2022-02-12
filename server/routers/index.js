@@ -14,7 +14,7 @@ var informationEntry = async function (classify, title) {
     title,
     classify,
     date,
-    count: 10,
+    count: 1,
     pinyinAndTitle,
   })
   thepage.save(() => {
@@ -58,6 +58,7 @@ router.post('/submitPage', function (req, res) {
         FinalContent
       )
       await informationEntry(classify, title)
+      res.send('文件已写入')
     } else {
       res.send('存在重名文章')
       // return Promise.reject('存在重名文章')
@@ -76,7 +77,7 @@ router.get('/getClassify', function (req, res) {
 
 // 通过分类获取文章
 router.post('/getList', function (req, res) {
-  var classify = req.body.classifyId
+  var {classify} = req.body
   var resaultTitle = []
   ;(async () => {
     // 获取文章列表

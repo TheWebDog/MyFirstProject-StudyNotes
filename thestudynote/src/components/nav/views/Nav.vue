@@ -34,7 +34,7 @@ export default {
   methods: {
     ...mapActions(['getNav','geClassifyList']),
     goToTheClassify (classify) {
-      if (this.$route.params.classifyId != classify) {
+      if (this.$route.params.classify != classify) {
         this.$router.replace(`/ClassifyPage/${classify}`)
       }
       this.geClassifyList(classify)

@@ -36,10 +36,11 @@ export default {
           case '存在重名文章':
             alert('存在重名文章,请换一个标题')
             break
-          case '文件写入成功':
+          case '文件已写入':
             alert('文章保存成功')
             break
           default:
+            console.log('异常!')
             console.log(data)
             break
         }

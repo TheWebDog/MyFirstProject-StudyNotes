@@ -6,7 +6,7 @@ export default {
     axios
       .post('http://localhost:3090/getPage',{classify,title})
       .then((res) => {
-        state.page = marked.parse(res.data) 
+        state.page = marked.parse(res.data)
       })
       .catch((err) => {
         console.log(err)

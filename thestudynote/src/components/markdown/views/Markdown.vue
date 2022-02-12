@@ -86,6 +86,7 @@ export default {
     },
     set_download () {
       console.log('下载功能暂未开发')
+      alert('下载功能暂未开发')
     },
     goBack () {
       this.$router.back()

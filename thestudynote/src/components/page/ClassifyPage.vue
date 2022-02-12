@@ -9,7 +9,7 @@
             <ul class="classify_ul">
               <li
                 class="classify_li"
-                :class="{ choicedli: $route.params.classifyId == item }"
+                :class="{ choicedli: $route.params.classify == item }"
                 v-for="(item, index) in getClassifyList"
                 v-bind:key="index"
                 @click="goToTheClassify(item)"
@@ -25,7 +25,7 @@
       </div>
 
       <div class="list_ClassifyPage">
-        <List :key="$route.params.classifyId"></List>
+        <List :key="$route.params.classify"></List>
       </div>
     </div>
   </div>
@@ -43,10 +43,10 @@ export default {
     ...mapGetters(['getClassifyList']),
   },
   methods: {
-    // this.$route.params.classifyId
+    // this.$route.params.classify
     ...mapActions(['getNav','geClassifyList']),
     goToTheClassify (classify) {
-      if (this.$route.params.classifyId != classify) {
+      if (this.$route.params.classify != classify) {
         this.$router.replace(`/ClassifyPage/${classify}`)
       }
       this.geClassifyList(classify)

@@ -25,12 +25,13 @@ export default {
     ...mapGetters(['sendHtml']),
   },
   methods: {
-    ...mapActions(['getPage']),
-    handle () {
-      console.log(this.$route.params)
-    },
+    ...mapActions(['getPage','geClassifyList']),
+    // handle () {
+    //   console.log(this.$route.params)
+    // },
     goBack () {
       this.$router.back()
+      this.geClassifyList(this.$route.params.classify)
     },
   },
   created () {
