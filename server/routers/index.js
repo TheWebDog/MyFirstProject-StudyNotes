@@ -9,7 +9,7 @@ const pinyinPro = require('pinyin-pro').pinyin
 var informationEntry = async function (classify, title) {
   var time = await fsPromises.stat(`./articles/${classify}/${title}.md`)
   var date = time.birthtime.toLocaleString()
-  var pinyinAndTitle = pinyinPro(title, { toneType: 'none' }).split(' ').join('') + title
+  var pinyinAndTitle = pinyinPro(title, { toneType: 'none' }).split(' ').join('').toLowerCase() + title
   const thepage = new PageModel({
     title,
     classify,
@@ -166,7 +166,7 @@ router.post('/search', function (req, res) {
     res.send({})
   } else {
     // 去引号去空格
-    var wd = searchWhat.split("'").join('').split(' ').join('')
+    var wd = searchWhat.split("'").join('').split(' ').join('').toLowerCase()
     var reg = new RegExp(`${wd}`)
       ; (async () => {
       // 查找
