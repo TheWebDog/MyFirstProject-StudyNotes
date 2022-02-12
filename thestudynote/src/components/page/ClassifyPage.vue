@@ -44,11 +44,12 @@ export default {
   },
   methods: {
     // this.$route.params.classifyId
-    ...mapActions(['getNav']),
+    ...mapActions(['getNav','geClassifyList']),
     goToTheClassify (classify) {
       if (this.$route.params.classifyId != classify) {
-        this.$router.replace(`/${classify}`)
+        this.$router.replace(`/ClassifyPage/${classify}`)
       }
+      this.geClassifyList(classify)
     },
   },
   created () {

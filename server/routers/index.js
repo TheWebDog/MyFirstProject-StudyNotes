@@ -3,23 +3,19 @@ const router = express.Router()
 const fsPromises = require('fs').promises
 const async = require('async')
 const PageModel = require('../models/page')
+const pinyinPro = require('pinyin-pro').pinyin
 
-// 文章列表模板
-var thetemp = function (fileName, classify, birthTime, count) {
-  this.title = fileName
-  this.classify = classify
-  this.date = birthTime
-  this.count = count
-}
 // 录入信息函数
 var informationEntry = async function (classify, title) {
   var time = await fsPromises.stat(`./articles/${classify}/${title}.md`)
   var date = time.birthtime.toLocaleString()
+  var pinyinAndTitle = pinyinPro(title, { toneType: 'none' }).split(' ').join('') + title
   const thepage = new PageModel({
     title,
     classify,
     date,
-    count: 1,
+    count: 10,
+    pinyinAndTitle,
   })
   thepage.save(() => {
     console.log('文件已写入')
@@ -37,7 +33,6 @@ function diff(arr1, arr2) {
   return newArr
 }
 
-
 // 接口--------------------------------------------------------------------------------
 
 // 接收文章(暂时还未对数据进行限制！！！！！！！！！！！)
@@ -52,7 +47,6 @@ router.post('/submitPage', function (req, res) {
       await fsPromises.mkdir(`./articles/${classify}`)
     }
     var files2 = await fsPromises.readdir(`./articles/${classify}`)
-
     if (!files2.includes(`${title}.md`)) {
       var data = await fsPromises.readFile('./public/template.md', 'utf-8')
       var FinalContent = data
@@ -63,7 +57,7 @@ router.post('/submitPage', function (req, res) {
         `./articles/${classify}/${title}.md`,
         FinalContent
       )
-      informationEntry(classify, title)
+      await informationEntry(classify, title)
     } else {
       res.send('存在重名文章')
       // return Promise.reject('存在重名文章')
@@ -83,51 +77,30 @@ router.get('/getClassify', function (req, res) {
 // 通过分类获取文章
 router.post('/getList', function (req, res) {
   var classify = req.body.classifyId
-  var thefile = [] // 文件名列表
-  var count = [] // 点击量
-  var timeList = []
+  var resaultTitle = []
   ;(async () => {
     // 获取文章列表
-    thefile = await fsPromises.readdir(`./articles/${classify}`)
-    var promisesOfFs = []
+    var resault = await PageModel.find({ classify: classify })
+    // mongo的列表取出title到resaultTitle
+    for (var i = 0; i < resault.length; i++) {
+      resaultTitle.push(resault[i].title)
+    }
+    // 从分类中获取文章列表
+    var thefile = await fsPromises.readdir(`./articles/${classify}`)
+    // 去除thefile里的".md""
     for (var i = 0; i < thefile.length; i++) {
-      // 去除thefile里的".md""
       thefile[i] = thefile[i].slice(0, thefile[i].length - 3)
-      // 获取文件信息并塞入数组
-      promisesOfFs.push(
-        fsPromises.stat(`./articles/${classify}/${thefile[i]}.md`)
-      )
     }
-    var times = await Promise.all(promisesOfFs) // 并行异步操作 大大节省时间
-    for (var i = 0; i < times.length; i++) {
-      // 获取信息中的创建时间并塞入数组
-      timeList.push(times[i].birthtime.toLocaleString())
+    // 比对文章列表并获取结果
+    deledTitle = diff(thefile, resaultTitle)
+    // 若deledTitle中有结果 表明mongoose有缺失篇目 需补录
+    if (deledTitle.length != 0) {
+      for (var i = 0; i < deledTitle.length; i++) {
+        await informationEntry(classify, deledTitle[i])
+      }
     }
-    // 从mongo获取点击量count
-    PageModel.find({ classify: classify })
-      .then((resault) => {
-        if (resault.length == 0) {
-          // count获取失败
-          for (var i = 0; i < thefile.length; i++) {
-            count.push(1)
-            informationEntry(classify, thefile[i])
-          }
-        } else {
-          for (var i = 0; i < resault.length; i++) {
-            var j = resault[i].count
-            count.push(j)
-          }
-        }
-        // 数据整合
-        var resault = []
-        for (var i = 0; i < thefile.length; i++) {
-          resault.push(new thetemp(thefile[i], classify, timeList[i], count[i]))
-        }
-        res.send(resault)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+    var finallyResault = await PageModel.find({ classify: classify })
+    res.send(finallyResault)
   })()
 })
 
@@ -173,7 +146,7 @@ router.post('/getPage', function (req, res) {
     var findresault = await PageModel.find({ title: title, classify: classify })
     if (findresault.length == 0) {
       // 文章在mongoose中查找不到，补录该文章基本信息
-      informationEntry(classify, title)
+      await informationEntry(classify, title)
     } else {
       var numb = ++findresault[0].count
       await PageModel.updateOne(
@@ -184,6 +157,23 @@ router.post('/getPage', function (req, res) {
       })
     }
   })()
+})
+
+// 搜索文章
+router.post('/search', function (req, res) {
+  var { searchWhat } = req.body
+  if (!searchWhat) {
+    res.send({})
+  } else {
+    // 去引号去空格
+    var wd = searchWhat.split("'").join('').split(' ').join('')
+    var reg = new RegExp(`${wd}`)
+      ; (async () => {
+      // 查找
+      var resault = await PageModel.find({ pinyinAndTitle: reg })
+      res.send(resault)
+    })()
+  }
 })
 
 module.exports = router

@@ -1,24 +1,30 @@
 <template>
   <div class="search">
-      <input
-        class="search_input"
-        type="text"
-        placeholder="Search..."
-        @input="changeValue($event)"
-      />
+    <input
+      class="search_input"
+      type="text"
+      placeholder="Search..."
+      @input="changeValue($event)"
+    />
   </div>
 </template>
 
 <script>
-// mapActions获取actions中函数
 import { mapActions } from 'vuex'
 export default {
   name: "Search",
   methods: {
-    ...mapActions(["change_searchValue"]),
+    ...mapActions(["geSearchList", "changeFilter", "change_searchValue","geHotList"]),
     changeValue: function (e) {
       var value = e.target.value
       this.change_searchValue(value)
+      if (value.length != 0) {
+        this.geSearchList(value)
+        this.changeFilter('搜索')
+      } else {
+        this.changeFilter('热门')
+        this.geHotList()
+      }
     }
   },
 }

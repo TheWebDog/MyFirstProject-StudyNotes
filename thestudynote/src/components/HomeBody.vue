@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import { AddBtn } from './addBtn/index'
 import { Thefilter } from './thefilter/index'
 import { Search } from './search/index'
@@ -28,6 +29,13 @@ export default {
     Thefilter,
     Search,
     List,
+  },
+  methods: {
+    ...mapActions(['geHotList']),
+  },
+  created () {
+    // console.log('this.$route.fullPath')
+    this.geHotList()
   },
 }
 </script>

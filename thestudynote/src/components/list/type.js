@@ -1,1 +1,4 @@
 export const GET_LISTS = 'GET_LISTS'
+export const GET_HOT_LISTS = 'GET_HOT_LISTS'
+export const GET_CLASSIFY_LISTS = 'GET_CLASSIFY_LISTS'
+export const GET_SEARCH_LIST = 'GET_SEARCH_LIST'

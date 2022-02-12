@@ -1,6 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+// 破除导航重复报错
+const originalPush = VueRouter.prototype.push
+   VueRouter.prototype.push = function push(location) {
+   return originalPush.call(this, location).catch(err => err)
+}
+
 Vue.use(VueRouter)
 
 export default new VueRouter({
@@ -21,18 +27,18 @@ export default new VueRouter({
       name: '',
       children: [
         {
-          path: '/:classifyId',
-          name: ' ',
+          path: '/ClassifyPage/:classifyId',
+          name: 'ClassifyPage/:classifyId',
           component: () => {
             return import('./components/page/ClassifyPage.vue')
           },
         },
         {
-          path: '/:classify/:title',
+          path: '/Page/:classify/:title',
           component: () => {
             return import('./components/page/Page.vue')
           },
-          name: ':classify/:title',
+          name: 'Page/:classify/:title',
         },
         {
           path: '*',

@@ -23,26 +23,27 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 export default {
   name: "List",
   computed: {
     ...mapGetters(['getList']),
   },
   methods: {
-    ...mapActions(['geClassifyList']),
     toPage: function (classify, title) {
-      this.$router.push(`/${classify}/${title}`)
+      this.$router.push(`/Page/${classify}/${title}`)
     },
   },
   created () {
-    var classifyId
-    if (this.$route.params.classifyId) {
-      classifyId =this.$route.params.classifyId
-    }else{
-      classifyId = this.$route.fullPath
-    }
-    this.geClassifyList(classifyId)
+    // var classifyId
+    // if (this.$route.params.classifyId) {
+    //   console.log('this.$route.params.classifyId')
+    //   classifyId =this.$route.params.classifyId
+    // }else{
+    //   // console.log('this.$route.fullPath')
+    //   classifyId = this.$route.fullPath
+    // }
+    // this.geClassifyList(classifyId)
   },
 };
 </script>

@@ -32,17 +32,17 @@ export default {
     ...mapGetters(['getClassifyList']),
   },
   methods: {
-    ...mapActions(['getNav']),
+    ...mapActions(['getNav','geClassifyList']),
     goToTheClassify (classify) {
       if (this.$route.params.classifyId != classify) {
-        this.$router.replace(`/${classify}`)
+        this.$router.replace(`/ClassifyPage/${classify}`)
       }
+      this.geClassifyList(classify)
     },
     goHome () {
       if (this.$route.fullPath != `/`) {
         this.$router.replace(`/`)
       }
-
     },
   },
   created () {
