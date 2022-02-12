@@ -1,14 +1,16 @@
 <template>
   <div>
-    <div class="message">信息区：登录按钮，本站简述</div>
-    <div class="show">
-      <div class="showhead">
-        <Thefilter></Thefilter>
-        <Search></Search>
-        <AddBtn></AddBtn>
-      </div>
-      <div class="list">
-        <List></List>
+    <div class="Home_body">
+      <div class="message">信息区：登录按钮，本站简述</div>
+      <div class="show">
+        <div class="showhead">
+          <Thefilter></Thefilter>
+          <Search></Search>
+          <AddBtn></AddBtn>
+        </div>
+        <div class="list">
+          <List></List>
+        </div>
       </div>
     </div>
   </div>

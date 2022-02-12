@@ -8,11 +8,12 @@
   -ms-user-select: none;
   user-select: none;
 }
-.Home_body{
+.the_body{
   /* background-color: black; */
   height: calc(100vh - 50px);
   box-sizing: border-box;
   padding: 10px;
+  display: flex;
 }
 .message{
   background-color: rgba(255, 255, 255, 0.4);

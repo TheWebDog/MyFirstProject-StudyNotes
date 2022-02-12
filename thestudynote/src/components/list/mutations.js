@@ -5,7 +5,8 @@ export default {
     if (classifyId === '/') {
       axios
       .get('http://localhost:3090/getHot')
-      .then((res) => {
+        .then((res) => {
+        // console.log(res.data,'-------hot')
         state.List = res.data
       })
       .catch((err) => {
@@ -14,7 +15,8 @@ export default {
     } else {
       axios
       .post('http://localhost:3090/getList',{classifyId})
-      .then((res) => {
+        .then((res) => {
+          // console.log(res.data,'-------list')
         state.List = res.data
       })
       .catch((err) => {

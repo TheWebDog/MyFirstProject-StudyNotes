@@ -10,7 +10,4 @@ export default {
   getHtml: function (state) {
     return marked.parse(state.context)
   },
-  // getOptionValue: function (state) {
-  //   return state.optionValue
-  // },
 }

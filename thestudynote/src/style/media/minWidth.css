@@ -5,10 +5,11 @@
       'leftblock leftblock leftblock Home_body Home_body Home_body Home_body rightblock rightblock rightblock';
   } */
   .Home_body{
+    width: 100%;
     display: grid;
     grid-template-columns: 1fr 3fr;
   }
-  .Home_body{
+  .the_body{
     width: 1000px;
     margin: auto;
   }

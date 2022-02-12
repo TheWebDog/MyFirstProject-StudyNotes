@@ -4,13 +4,30 @@ const fsPromises = require('fs').promises
 const async = require('async')
 const PageModel = require('../models/page')
 
-// 模板
+// 文章列表模板
 var thetemp = function (fileName, classify, birthTime, count) {
   this.title = fileName
   this.classify = classify
   this.date = birthTime
   this.count = count
 }
+// 录入信息函数
+var informationEntry = async function (classify,title) {
+  var time = await fsPromises.stat(`./articles/${classify}/${title}.md`)
+  var date = time.birthtime.toLocaleString()
+  const thepage = new PageModel({
+    title,
+    classify,
+    date,
+    count: 1,
+  })
+  thepage.save(() => {
+    console.log('文件已写入')
+  })
+}
+
+
+
 
 // 接收文章(暂时还未对数据进行限制！！！！！！！！！！！！！！！！！！！！！！！！)
 router.post('/submitPage', function (req, res) {
@@ -35,17 +52,7 @@ router.post('/submitPage', function (req, res) {
         `./articles/${classify}/${title}.md`,
         FinalContent
       )
-      var time = await fsPromises.stat(`./articles/${classify}/${title}.md`)
-      var date = time.birthtime.toLocaleString()
-      const thepage = new PageModel({
-        title,
-        classify,
-        date,
-        count: 1,
-      })
-      thepage.save(() => {
-        res.send('文件写入成功')
-      })
+      informationEntry(classify,title)
     } else {
       res.send('存在重名文章')
       // return Promise.reject('存在重名文章')
@@ -64,19 +71,19 @@ router.get('/getClassify', function (req, res) {
 
 // 通过分类获取文章
 router.post('/getList', function (req, res) {
-  var { classifyId } = req.body;
-  var thefile = [];// 文件名列表
-  var count = []; // 点击量
-  var timeList = [];
-  (async () => {
+  var classify = req.body.classifyId
+  var thefile = [] // 文件名列表
+  var count = [] // 点击量
+  var timeList = []
+  ;(async () => {
     // 获取文章列表
-    thefile = await fsPromises.readdir(`./articles/${classifyId}`)
+    thefile = await fsPromises.readdir(`./articles/${classify}`)
     var promisesOfFs = []
     for (var i = 0; i < thefile.length; i++) {
+      // 去除thefile里的".md""
+      thefile[i] = thefile[i].slice(0, thefile[i].length - 3)
       // 获取文件信息并塞入数组
-      promisesOfFs.push(
-        fsPromises.stat(`./articles/${classifyId}/${thefile[i]}`)
-      )
+      promisesOfFs.push(fsPromises.stat(`./articles/${classify}/${thefile[i]}.md`))
     }
     var times = await Promise.all(promisesOfFs) // 并行异步操作 大大节省时间
     for (var i = 0; i < times.length; i++) {
@@ -84,16 +91,17 @@ router.post('/getList', function (req, res) {
       timeList.push(times[i].birthtime.toLocaleString())
     }
     // 从mongo获取点击量count
-    PageModel.find({ classify: `${classifyId}` })
+    PageModel.find({ classify: classify })
       .then((resault) => {
         if (resault.length == 0) {
+          // count获取失败
           console.log(thefile.length)
           for (var i = 0; i < thefile.length; i++) {
-            count.push(1)
+            count.push(1);
+            informationEntry(classify,thefile[i])
           }
         } else {
           for (var i = 0; i < resault.length; i++) {
-            // console.log(resault[i].count)
             var j = resault[i].count
             count.push(j)
           }
@@ -101,9 +109,7 @@ router.post('/getList', function (req, res) {
         // 数据整合
         var resault = []
         for (var i = 0; i < thefile.length; i++) {
-          resault.push(
-            new thetemp(thefile[i], classifyId, timeList[i], count[i])
-          )
+          resault.push(new thetemp(thefile[i], classify, timeList[i], count[i]))
         }
         res.send(resault)
       })
@@ -113,11 +119,35 @@ router.post('/getList', function (req, res) {
   })()
 })
 
-// 获取热门文章
+// 通过热门获取文章
 router.get('/getHot', function (req, res) {
-  (async () => {
-    var resault = await PageModel.find({}).sort({ 'count': -1 }).limit(5)
+  ;(async () => {
+    var resault = await PageModel.find({}).sort({ count: -1 }).limit(5)
     res.send(resault)
+  })()
+})
+
+// 获取文章
+router.post('/getPage', function (req, res) {
+  var { classify, title } = req.body
+  // console.log(title)
+  var pagePath = `./articles/${classify}/${title}.md`
+  ;(async () => {
+    var pageContent = await fsPromises.readFile(pagePath, 'utf-8')
+    res.send(pageContent)
+    var findresault = await PageModel.find({ title: title, classify: classify })
+    if (findresault.length == 0) {
+      // 文章在mongoose中查找不到，补录该文章基本信息
+      informationEntry(classify,title)
+    } else {
+      var numb = ++findresault[0].count
+      await PageModel.updateOne(
+        { title: title, classify: classify },
+        { count: numb }
+      ).catch((err) => {
+        console.log(err)
+      })
+    }
   })()
 })
 

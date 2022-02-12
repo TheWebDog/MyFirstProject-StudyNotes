@@ -1,21 +1,26 @@
 <template>
-  <div class="page">page</div>
+  <div>
+    <div class="page">
+      <PageView></PageView>
+    </div>
+  </div>
 </template>
 
 <script>
+import { PageView } from '../pageView/index';
 export default {
   name: "Page",
   components: {
-
+    PageView,
   },
   methods: {
-    handle () {
-      // console.log(this.$route)
-    }
+    // handle () {
+    //   console.log(this.$route.params)
+    // }
   },
-  created () {
-    this.handle()
-  }
+  // created () {
+  //   // this.handle()
+  // }
 }
 </script>
 

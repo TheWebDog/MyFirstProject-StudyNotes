@@ -6,6 +6,7 @@ import { searchStore } from './components/search/index'
 import { filterStore } from './components/thefilter/index'
 import { listStore } from './components/list/index'
 import { markdownStore } from './components/markdown/index'
+import { pageViewStore } from './components/pageView/index'
 // 好像不加index也行
 
 
@@ -19,6 +20,7 @@ const store = new Vuex.Store({
     filterStore,
     listStore,
     markdownStore,
+    pageViewStore,
   },
 })
 

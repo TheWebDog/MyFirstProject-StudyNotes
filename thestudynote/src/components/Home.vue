@@ -5,7 +5,7 @@
       <Nav></Nav>
     </div>
 
-    <router-view class="Home_body"></router-view>
+    <router-view class="the_body"></router-view>
 
     <div class="background">
       <div class="square">

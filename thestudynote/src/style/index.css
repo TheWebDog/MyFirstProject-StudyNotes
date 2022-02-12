@@ -2,6 +2,7 @@
 /* 默认css */
 @import url('./normal/MD.css');
 @import url('./normal/ClassifyPage.css');
+@import url('./normal/page.css');
 @import url('./normal/home.css');
 @import url('./normal/Nav.css');
 @import url('./normal/filter.css');

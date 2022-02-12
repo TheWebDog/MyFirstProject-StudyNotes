@@ -53,10 +53,14 @@
   font-family: monospace, monospace;
   font-size: 1em;
 }
-/* code{
-  word-wrap: break-word !important;
-  white-space: pre-wrap !important;
-} */
+code{
+  box-sizing: border-box;
+  border: 2px solid #a0a0a0 !important;
+  
+  /* 强制换行 */
+  /* word-wrap: break-word !important; */
+  /* white-space: pre-wrap !important; */
+}
 
 /* code滚动条 */
 code::-webkit-scrollbar {
