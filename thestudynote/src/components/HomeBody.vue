@@ -28,6 +28,6 @@ export default {
     Thefilter,
     Search,
     List,
-  }
+  },
 }
 </script>

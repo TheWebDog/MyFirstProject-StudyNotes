@@ -6,7 +6,6 @@
         placeholder="Search..."
         @input="changeValue($event)"
       />
-      <!-- <div class="overlay"></div> -->
   </div>
 </template>
 
@@ -21,6 +20,6 @@ export default {
       var value = e.target.value
       this.change_searchValue(value)
     }
-  }
+  },
 }
 </script>

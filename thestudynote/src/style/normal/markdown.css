@@ -82,7 +82,7 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 .left_bottom {
   width: calc(100% - 10px);
   height: 40px;
-  border-top: 2px solid #e3e3e3;
+  border-top: 1px solid black;
   display: flex;
   justify-content: flex-end;
   background-color: #000;
@@ -211,6 +211,7 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
   border-radius: 5px;
   background: #ededed;
 }
+
 .right_content {
   height: calc(100vh - 107px);
   padding-top: 10px;

@@ -12,7 +12,7 @@ var thetemp = function (fileName, classify, birthTime, count) {
   this.count = count
 }
 // 录入信息函数
-var informationEntry = async function (classify,title) {
+var informationEntry = async function (classify, title) {
   var time = await fsPromises.stat(`./articles/${classify}/${title}.md`)
   var date = time.birthtime.toLocaleString()
   const thepage = new PageModel({
@@ -25,11 +25,22 @@ var informationEntry = async function (classify,title) {
     console.log('文件已写入')
   })
 }
+// 对比两个数组 并返回第一个数组多出来的值 并且去重
+function diff(arr1, arr2) {
+  var newArr = new Set()
+  for (var i = 0; i < arr1.length; i++) {
+    if (arr2.indexOf(arr1[i]) === -1) {
+      newArr.add(arr1[i])
+    }
+  }
+  newArr = Array.from(newArr)
+  return newArr
+}
 
 
+// 接口--------------------------------------------------------------------------------
 
-
-// 接收文章(暂时还未对数据进行限制！！！！！！！！！！！！！！！！！！！！！！！！)
+// 接收文章(暂时还未对数据进行限制！！！！！！！！！！！)
 router.post('/submitPage', function (req, res) {
   // 获取数据
   var { title, content, md_content, classify } = req.body
@@ -52,7 +63,7 @@ router.post('/submitPage', function (req, res) {
         `./articles/${classify}/${title}.md`,
         FinalContent
       )
-      informationEntry(classify,title)
+      informationEntry(classify, title)
     } else {
       res.send('存在重名文章')
       // return Promise.reject('存在重名文章')
@@ -83,7 +94,9 @@ router.post('/getList', function (req, res) {
       // 去除thefile里的".md""
       thefile[i] = thefile[i].slice(0, thefile[i].length - 3)
       // 获取文件信息并塞入数组
-      promisesOfFs.push(fsPromises.stat(`./articles/${classify}/${thefile[i]}.md`))
+      promisesOfFs.push(
+        fsPromises.stat(`./articles/${classify}/${thefile[i]}.md`)
+      )
     }
     var times = await Promise.all(promisesOfFs) // 并行异步操作 大大节省时间
     for (var i = 0; i < times.length; i++) {
@@ -95,10 +108,9 @@ router.post('/getList', function (req, res) {
       .then((resault) => {
         if (resault.length == 0) {
           // count获取失败
-          console.log(thefile.length)
           for (var i = 0; i < thefile.length; i++) {
-            count.push(1);
-            informationEntry(classify,thefile[i])
+            count.push(1)
+            informationEntry(classify, thefile[i])
           }
         } else {
           for (var i = 0; i < resault.length; i++) {
@@ -122,15 +134,38 @@ router.post('/getList', function (req, res) {
 // 通过热门获取文章
 router.get('/getHot', function (req, res) {
   ;(async () => {
-    var resault = await PageModel.find({}).sort({ count: -1 }).limit(5)
-    res.send(resault)
+    var resaultClassify = []
+    var allRemovePromises = []
+    var deledClassify
+    // 从mongoose获取列表
+    var resault = await PageModel.find({})
+    // mongo的列表取出classify到resaultClassify
+    for (var i = 0; i < resault.length; i++) {
+      resaultClassify.push(resault[i].classify)
+    }
+    // 从文件夹获取分类列表
+    var classifyList = await fsPromises.readdir(`./articles`)
+    // 将文件夹中不存在classify保存到deledClassify
+    deledClassify = diff(resaultClassify, classifyList)
+    // deledClassify里啥有东西 代表存在数据异常 否则需要进行数据同步
+    if (deledClassify.length != 0) {
+      // 从mongoose中移除不存在的相关classify文章信息
+      for (var i = 0; i < deledClassify.length; i++) {
+        var removePromises = PageModel.remove({ classify: deledClassify[i] })
+        allRemovePromises.push(removePromises)
+      }
+      await Promise.all(allRemovePromises)
+    }
+    // 获取mongoose中存在的点击量排行前十的文章
+    var finallyResault = await PageModel.find({}).sort({ count: -1 }).limit(10)
+    // 发送数据
+    res.send(finallyResault)
   })()
 })
 
 // 获取文章
 router.post('/getPage', function (req, res) {
   var { classify, title } = req.body
-  // console.log(title)
   var pagePath = `./articles/${classify}/${title}.md`
   ;(async () => {
     var pageContent = await fsPromises.readFile(pagePath, 'utf-8')
@@ -138,7 +173,7 @@ router.post('/getPage', function (req, res) {
     var findresault = await PageModel.find({ title: title, classify: classify })
     if (findresault.length == 0) {
       // 文章在mongoose中查找不到，补录该文章基本信息
-      informationEntry(classify,title)
+      informationEntry(classify, title)
     } else {
       var numb = ++findresault[0].count
       await PageModel.updateOne(
