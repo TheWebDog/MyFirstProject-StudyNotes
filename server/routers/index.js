@@ -157,7 +157,7 @@ router.post('/getPage', function (req, res) {
         console.log(err)
       })
     }
-  })()
+  })().catch(e => console.log(e))
 })
 
 // 搜索文章

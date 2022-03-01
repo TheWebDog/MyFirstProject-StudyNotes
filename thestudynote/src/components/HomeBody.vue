@@ -1,7 +1,9 @@
 <template>
   <div>
     <div class="Home_body">
-      <div class="message">信息区：登录按钮，本站简述</div>
+      <div class="message">
+        <Message></Message>
+      </div>
       <div class="show">
         <div class="showhead">
           <Thefilter></Thefilter>
@@ -22,6 +24,7 @@ import { AddBtn } from './addBtn/index'
 import { Thefilter } from './thefilter/index'
 import { Search } from './search/index'
 import { List } from './list/index'
+import { Message } from './message/index'
 export default {
   name: 'HomeBody',
   components: {
@@ -29,6 +32,7 @@ export default {
     Thefilter,
     Search,
     List,
+    Message,
   },
   methods: {
     ...mapActions(['geHotList']),

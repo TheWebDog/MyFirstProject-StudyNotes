@@ -7,6 +7,7 @@ import { filterStore } from './components/thefilter/index'
 import { listStore } from './components/list/index'
 import { markdownStore } from './components/markdown/index'
 import { pageViewStore } from './components/pageView/index'
+import { messageStore } from './components/message/index'
 // 好像不加index也行
 
 
@@ -21,6 +22,7 @@ const store = new Vuex.Store({
     listStore,
     markdownStore,
     pageViewStore,
+    messageStore,
   },
 })
 
